@@ -38,26 +38,38 @@ public class Quick {
     d[a] = d[b];
     d[b] = temp;
   }
+  /*Modify the array to be in increasing order.
+ */
+ public static void quicksort(int[] data) {
+   qsH(data, 0, data.length - 1);
+ }
+ private static void qsH(int[] data, int start, int end) {
+   if (end > start) {
+      int i = partition(data, start, end);
+      qsH(data, 0, i - 1);
+      qsH(data, i, end);
+   }
+ }
 
-  private int[] partitionDutch(int[] data, int lo, int hi){
-    int median = 0;
-    if ((data[lo] <= data[hi] && data[lo] >= data[data.length/2]) || (data[lo] >= data[hi] && data[lo] <= data[data.length/2]))
-    int[] medianList = {data[lo], data[hi], data[data.length/2]};
-
-    int pivotIndex = new Random().nextInt(hi - lo + 1); //chooses initial pivot index randomly in the "current" data set
-    int pivot = data[pivotIndex];
-    swap(data, 0, pivotIndex);  //places pivot in the beginning
-    while (hi > lo) { //loops through "current" data set to reorganize the values based on being > or < than pivot
-      if (data[lo] > pivot) {
-        swap(data, lo, hi);
-        hi--;
-      }
-      else if(data[lo] < pivot) {
-        swap(data, 0, lo);
-
-      }
-      else lo++;
-    }
-    //return an array [lt,gt]
-}
+//   private int[] partitionDutch(int[] data, int lo, int hi){
+//     int median = 0;
+//     if ((data[lo] <= data[hi] && data[lo] >= data[data.length/2]) || (data[lo] >= data[hi] && data[lo] <= data[data.length/2]))
+//     int[] medianList = {data[lo], data[hi], data[data.length/2]};
+//
+//     int pivotIndex = new Random().nextInt(hi - lo + 1); //chooses initial pivot index randomly in the "current" data set
+//     int pivot = data[pivotIndex];
+//     swap(data, 0, pivotIndex);  //places pivot in the beginning
+//     while (hi > lo) { //loops through "current" data set to reorganize the values based on being > or < than pivot
+//       if (data[lo] > pivot) {
+//         swap(data, lo, hi);
+//         hi--;
+//       }
+//       else if(data[lo] < pivot) {
+//         swap(data, 0, lo);
+//
+//       }
+//       else lo++;
+//     }
+//     //return an array [lt,gt]
+// }
 }
