@@ -13,6 +13,11 @@ public class Quick {
    return data[k]; //returns k when = to pivot index
  }
  public static int partition (int [] data, int start, int end){
+    // int median = 0;
+    // if ((data[start] <= data[end] && data[start] >= data[start + (end - start)/2]) || (data[start] >= data[end] && data[start] <= data[start + (end - start)/2])) median = start;
+    // if ((data[end] <= data[start] && data[end] >= data[start + (end - start)/2]) || (data[end] >= data[start] && data[end] <= data[start + (end - start)/2])) median = end;
+    // if ((data[start + (end - start)/2] <= data[end] && data[start + (end - start)/2] >= data[start]) || (data[start + (end - start)/2] >= data[end] && data[start + (end - start)/2] <= data[start])) median = start + (end - start)/2;
+    // int pivotIndex = median;
     int pivotIndex = new Random().nextInt(end - start + 1); //chooses initial pivot index randomly in the "current" data set
     int pivot = data[pivotIndex];
     swap(data, 0, pivotIndex);  //places pivot in the beginning
