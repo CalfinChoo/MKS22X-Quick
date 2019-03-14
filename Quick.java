@@ -15,7 +15,6 @@ public class Quick {
  public static int partition (int [] data, int start, int end){
     if (start == end) return start;
     Random r = new Random();
-    int halfpass = 0;
     int median = 0;
     if ((data[start] <= data[end] && data[start] >= data[start + (end - start)/2]) || (data[start] >= data[end] && data[start] <= data[start + (end - start)/2])) median = start;
     if ((data[end] <= data[start] && data[end] >= data[start + (end - start)/2]) || (data[end] >= data[start] && data[end] <= data[start + (end - start)/2])) median = end;
