@@ -38,7 +38,7 @@ public class Driver {
     int[] ary = { 2, 10, 15, 23, 0,  0};  //sorted :  {0,2,5,10,15,23}
     int[] ary2 = { 2, 4, 10, 9, 15, 16, 8, 23, 0,  0, 4, 7, 9, 14};
     Quick test = new Quick();
-    System.out.println(test.quickselect(ary, 2));
+    System.out.println(test.quickselect(ary2, 1));
     // test.quicksort(ary2);
     // for (int i : ary2) System.out.println(i);
   }

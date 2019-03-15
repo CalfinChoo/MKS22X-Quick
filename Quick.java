@@ -4,13 +4,14 @@ public class Quick {
  */
  public static int quickselect(int []data, int k){
   if (k >= data.length || k < 0) throw new ArrayIndexOutOfBoundsException(); //checks to see if k is a valid index
-  int start = 0, end = data.length-1, pivot = partition(data, start, end);  //sets up initial values to run partition
-  while (k != pivot) { //while k is not = to pivot index, run the partition method, update the start/end
-     pivot = partition(data, start, end);
-     if (k < pivot) end = pivot - 1;
-     else start = pivot + 1;
+  int start = 0, end = data.length-1; //pivot = partition(data, start, end);  //sets up initial values to run partition
+  int[] i = partitionDutch(data, start, end);
+  while (k < i[0] || k > i[1]) { //while k is not within = bucket, run the partition method, update the start/end
+     if (k < i[0]) end = i[0];
+     else start = i[1] + 1;
+     i = partitionDutch(data, start, end);
   }
-  return data[k]; //returns k when = to pivot index
+  return data[k]; //returns k when within = bucket
 }
  public static int partition (int [] data, int start, int end){
     if (start == end) return start;
