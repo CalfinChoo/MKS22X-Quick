@@ -3,15 +3,15 @@ public class Quick {
   /*return the value that is the kth smallest value of the array.
  */
  public static int quickselect(int []data, int k){
-   if (k >= data.length || k < 0) throw new ArrayIndexOutOfBoundsException(); //checks to see if k is a valid index
-   int start = 0, end = data.length-1, pivot = partition(data, start, end);  //sets up initial values to run partition
-	 while (k != pivot) { //while k is not = to pivot index, run the partition method, update the start/end
-      pivot = partition(data, start, end);
-			if (k < pivot) end = pivot - 1;
-			else start = pivot + 1;
-	 }
-   return data[k]; //returns k when = to pivot index
- }
+  if (k >= data.length || k < 0) throw new ArrayIndexOutOfBoundsException(); //checks to see if k is a valid index
+  int start = 0, end = data.length-1, pivot = partition(data, start, end);  //sets up initial values to run partition
+  while (k != pivot) { //while k is not = to pivot index, run the partition method, update the start/end
+     pivot = partition(data, start, end);
+     if (k < pivot) end = pivot - 1;
+     else start = pivot + 1;
+  }
+  return data[k]; //returns k when = to pivot index
+}
  public static int partition (int [] data, int start, int end){
     if (start == end) return start;
     int median = 0;
