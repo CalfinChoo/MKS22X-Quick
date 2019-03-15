@@ -14,7 +14,6 @@ public class Quick {
  }
  public static int partition (int [] data, int start, int end){
     if (start == end) return start;
-    Random r = new Random();
     int median = 0;
     if ((data[start] <= data[end] && data[start] >= data[start + (end - start)/2]) || (data[start] >= data[end] && data[start] <= data[start + (end - start)/2])) median = start;
     if ((data[end] <= data[start] && data[end] >= data[start + (end - start)/2]) || (data[end] >= data[start] && data[end] <= data[start + (end - start)/2])) median = end;
@@ -59,25 +58,29 @@ public class Quick {
    }
  }
 
-//   private int[] partitionDutch(int[] data, int lo, int hi){
-//     int median = 0;
-//     if ((data[lo] <= data[hi] && data[lo] >= data[data.length/2]) || (data[lo] >= data[hi] && data[lo] <= data[data.length/2]))
-//     int[] medianList = {data[lo], data[hi], data[data.length/2]};
-//
-//     int pivotIndex = new Random().nextInt(hi - lo + 1); //chooses initial pivot index randomly in the "current" data set
-//     int pivot = data[pivotIndex];
-//     swap(data, 0, pivotIndex);  //places pivot in the beginning
-//     while (hi > lo) { //loops through "current" data set to reorganize the values based on being > or < than pivot
-//       if (data[lo] > pivot) {
-//         swap(data, lo, hi);
-//         hi--;
-//       }
-//       else if(data[lo] < pivot) {
-//         swap(data, 0, lo);
-//
-//       }
-//       else lo++;
-//     }
-//     //return an array [lt,gt]
-// }
+  private int[] partitionDutch(int[] data, int lo, int hi){
+    if (lo == hi) return new int[] {lo, lo + 1};
+    int median = 0;
+    if ((data[lo] <= data[hi] && data[lo] >= data[lo + (hi - lo)/2]) || (data[lo] >= data[hi] && data[lo] <= data[lo + (hi - lo)/2])) median = lo;
+    if ((data[hi] <= data[lo] && data[hi] >= data[lo + (hi - lo)/2]) || (data[hi] >= data[lo] && data[hi] <= data[lo + (hi - lo)/2])) median = hi;
+    if ((data[lo + (hi - lo)/2] <= data[hi] && data[lo + (hi - lo)/2] >= data[lo]) || (data[lo + (hi - lo)/2] >= data[hi] && data[lo + (hi - lo)/2] <= data[lo])) median = lo + (hi - lo)/2;
+    int pivotIndex = median;
+    int pivot = data[pivotIndex];
+    swap(data, lo, pivotIndex);  //places pivot in the lo
+
+    int lt = lo, i = lo, gt = hi;
+    while (i <= gt) { //loops through "current" data set to reorganize the values based on being > or < than pivot
+      if (data[i] > pivot) { //if value at index > pivot value, swap to the gt (end) and decrement
+        swap(data, i, gt);
+        gt--;
+      }
+      else if(data[i] < pivot) { //if value is < than pivot instead, swap with lt and increment lt and index
+        swap(data, i, lt);
+        lt++; i++;
+      }
+      else i++;  // if value == pivot, skip over it
+    }
+    //return an array [lt,gt]
+    return new int[] {lt, gt+1}; //returns array [lt, gt]
+   }
 }
