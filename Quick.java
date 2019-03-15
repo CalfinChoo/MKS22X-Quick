@@ -52,13 +52,16 @@ public class Quick {
  }
  private static void qsH(int[] data, int start, int end) {
    if (end > start) {
-      int i = partition(data, start, end);
-      qsH(data, start, i - 1);
-      qsH(data, i+1, end);
+      // int i = partition(data, start, end);
+      // qsH(data, start, i - 1);
+      // qsH(data, i+1, end);
+      int[] i = partitionDutch(data, start, end);
+      qsH(data, start, i[0] - 1);
+      qsH(data, i[1] + 1, end);
    }
  }
 
-  private int[] partitionDutch(int[] data, int lo, int hi){
+  private static int[] partitionDutch(int[] data, int lo, int hi){
     if (lo == hi) return new int[] {lo, lo + 1};
     int median = 0;
     if ((data[lo] <= data[hi] && data[lo] >= data[lo + (hi - lo)/2]) || (data[lo] >= data[hi] && data[lo] <= data[lo + (hi - lo)/2])) median = lo;
@@ -81,6 +84,6 @@ public class Quick {
       else i++;  // if value == pivot, skip over it
     }
     //return an array [lt,gt]
-    return new int[] {lt, gt+1}; //returns array [lt, gt]
+    return new int[] {lt, gt}; //returns array [lt, gt]
    }
 }
